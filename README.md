@@ -61,3 +61,11 @@ The available configurations are:
 * /etc/hadoop/mapred-site.xml  MAPRED_CONF
 
 If you need to extend some other configuration file, refer to base/entrypoint.sh bash script.
+
+
+echo "deb http://archive.debian.org/debian/ stretch main non-free contrib" > /etc/apt/sources.list
+echo "deb-src http://archive.debian.org/debian/ stretch main non-free contrib" >> /etc/apt/sources.list
+echo "deb http://archive.debian.org/debian-security/ stretch/updates main" >> /etc/apt/sources.list
+echo "deb-src http://archive.debian.org/debian-security/ stretch/updates main" >> /etc/apt/sources.list
+
+
