@@ -1,14 +1,18 @@
 #!/bin/bash
 i=1
+hadoop fs -rm -r /user/root/testMapReduce
 while :
 do
 	# hadoop jar /opt/hadoop-3.2.1/share/hadoop/tools/lib/hadoop-streaming-3.2.1.jar \-files ./mapper.py,./reducer.py,./centroids.txt \-mapper "python3 mapper.py" \-reducer "python3 reducer.py" \-input /user/root/input/dataset.txt \-output /testMapReduce/mapreduce-output$i
 	hadoop jar /opt/hadoop-3.2.1/share/hadoop/tools/lib/hadoop-streaming-3.2.1.jar \
+	-D mapreduce.job.reduces=1 \
+	-D mapreduce.map.memory.mb=0.007 \
+	-D mapreduce.reduce.memory.mb=0.007 \
 	-files ./mapper.py,./reducer.py,./centroids.txt \
 	-mapper "python3 mapper.py" \
 	-reducer "python3 reducer.py" \
 	-input /user/root/sample_input.txt \
-	-output /user/root/testMapReduce/mapreduce-output$i
+	-output /user/root/testMapReduce/mapreduce-output$i \
 
 	rm -f centroids1.txt
 	echo $i

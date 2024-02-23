@@ -11,10 +11,10 @@ def read_data(file_path):
     return x, y
 
 # Read data points
-data_x, data_y = read_data('dataset.txt')
+data_x, data_y = read_data('generated_dataset.txt')
 
 # Read centroids
-centroid_x, centroid_y = read_data('output\mapreduce-output3\part-00000')
+centroid_x, centroid_y = read_data('centroids.txt')
 # centroid_x, centroid_y = read_data('centroids.txt')
 # Plotting
 plt.figure(figsize=(10, 6))
