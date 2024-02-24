@@ -34,12 +34,8 @@ def read_data(file_path):
 
 if __name__ == "__main__":
     centroids_file = "centroids.txt"
-    total_size_mb = 30
-    size_per_datapoint_bytes = 16
-
-    num_datapoints = (total_size_mb * 1024**2)
-    # num_datapoints = 10000000  # Specify the number of data points
-    sparsity = 590  # Adjust sparsity parameter as needed
+    num_datapoints = 105000  # Specify the number of data points
+    sparsity = 49  # Adjust sparsity parameter as needed
     print(num_datapoints)
     dataset = generate_dataset(centroids_file, num_datapoints, sparsity)
 

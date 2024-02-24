@@ -1,18 +1,20 @@
 from mapper import getCentroids
+from itertools import product
 
-#check if distance of centroids and centroids1 is less than 1
+# Function to check if the distance between any pair of centroids is less than 1
 def checkCentroidsDistance(centroids, centroids1):
-    f1x = abs(centroids[0][0] - centroids1[0][0])<1
-    f1y = abs(centroids[0][1] - centroids1[0][1])<1
-    f2x = abs(centroids[1][0] - centroids1[1][0])<1
-    f2y = abs(centroids[1][1] - centroids1[1][1])<1
-    f3x = abs(centroids[2][0] - centroids1[2][0])<1
-    f3y = abs(centroids[2][1] - centroids1[2][1])<1
-
-    if f1x and f1y and f2x and f2y and f3x and f3y:
-        print(1)
-    else:
-        print(0)
+    # Iterate over all possible pairs of centroids
+    for c1, c2 in product(centroids, centroids1):
+        # Calculate the difference in x and y coordinates
+        dx = abs(c1[0] - c2[0])
+        dy = abs(c1[1] - c2[1])
+        
+        # Check if both differences are less than 1
+        if dx < 1 and dy < 1:
+            print(1)
+            return
+    # If no pair is close enough, print 0
+    print(0)
 
 if __name__ == "__main__":
     centroids = getCentroids('centroids.txt')
