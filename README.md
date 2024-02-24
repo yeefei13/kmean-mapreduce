@@ -1,6 +1,6 @@
 # K Mean distributed version in Hadoop
 
-## Steps to run K mean in docker using hadoop
+### Steps to run the experiment
 1. Create docker containers:
   docker-compose up
 2. transfer required files into namenode
@@ -12,10 +12,24 @@
 4. run k mean distributed algorithm in the same directory:
   ./run.sh
 
+### To run different experiment
+change the parameters in run.sh to experiment on different number of mapper/reducers, different memory allocated for the executors...
+
+run.sh:
+...
+    hadoop jar /opt/hadoop-3.2.1/share/hadoop/tools/lib/hadoop-streaming-3.2.1.jar \
+    -D mapreduce.job.reduces=1 \
+    -D mapreduce.map.memory.mb=20 \
+    -D mapreduce.reduce.memory.mb=20 \
+    -files ./mapper.py,./reducer.py,./centroids.txt \
+    -mapper "python3 mapper.py" \
+    -reducer "python3 reducer.py" \
+    -input /user/root/dataset.txt \
+    -output /user/root/testMapReduce/mapreduce-output$i \
+...
 
 
-
-p.s. in order to run python, run the following command in each container
+### NOTE: in order to run python, run the following command in each container
 enter container: docker exec -it namenode /bin/bash
 
 echo "deb http://archive.debian.org/debian/ stretch main non-free contrib" > /etc/apt/sources.list
