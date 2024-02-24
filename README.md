@@ -2,20 +2,28 @@
 
 ### Steps to run the experiment
 1. Create docker containers:
+   
   docker-compose up
-2. transfer required files into namenode
+3. transfer required files into namenode
+
   ./setup.sh
-3. go into namenode container and setup files in hadoop hdfs
+4. go into namenode container and setup files in hadoop hdfs
+
    docker exec -it namenode /bin/bash
+   
    cd tmp
+   
    setup-hdfs.sh
-4. run k mean distributed algorithm in the same directory:
+   
+5. run k mean distributed algorithm in the same directory:
+   
   ./run.sh
 
 ### To run different experiment
 change the parameters in run.sh to experiment on different number of mapper/reducers, different memory allocated for the executors...
 
 run.sh:
+
 ...
     hadoop jar /opt/hadoop-3.2.1/share/hadoop/tools/lib/hadoop-streaming-3.2.1.jar \
     -D mapreduce.job.reduces=1 \
@@ -38,4 +46,5 @@ echo "deb http://archive.debian.org/debian-security/ stretch/updates main" >> /e
 echo "deb-src http://archive.debian.org/debian-security/ stretch/updates main" >> /etc/apt/sources.list
 
 apt update
+
 apt install python3
